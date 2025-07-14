@@ -1,6 +1,8 @@
 import time
 import csv
 import random
+import math
+import os
 
 class PID:
     def __init__(self, Kp, Ki, Kd, setpoint=25.0, output_limits=(0, 100)):
@@ -42,6 +44,7 @@ def random_walk(temp, pwm, ambient=22.0):
     return temp
 
 CSV_FILE = 'dummy_data.csv'
+SETPOINT_FILE = 'setpoint_override.txt'
 
 with open(CSV_FILE, 'w', newline='') as f:
     writer = csv.writer(f)
@@ -54,8 +57,20 @@ def main():
     print("Starting dummy control loop. Press Ctrl+C to stop.")
     try:
         while True:
+            # Allow setpoint override from dashboard
+            if os.path.exists(SETPOINT_FILE):
+                try:
+                    with open(SETPOINT_FILE, 'r') as f:
+                        new_setpoint = float(f.read().strip())
+                        pid.setpoint = new_setpoint
+                except Exception:
+                    pass
             pwm = pid.compute(temp)
             temp = random_walk(temp, pwm)
+            # Fault detection: shut off if temp is NaN or >70°C
+            if math.isnan(temp) or temp > 70.0:
+                pwm = 0
+                print(f"FAULT: Temp={temp} (NaN or >70°C). Heater shut off.")
             with open(CSV_FILE, 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([time.time(), temp, pid.setpoint, pwm])

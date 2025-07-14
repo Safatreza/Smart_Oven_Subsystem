@@ -5,10 +5,11 @@ A modular, real-time temperature control system for ovens, featuring sensor feed
 ## Features
 - Real-time temperature sensing and control
 - PID tuning and simulation
-- Safety shutoff for overheat and sensor errors
+- Safety shutoff for overheat and sensor errors (fault detection logic: if sensor reads NaN or temp > 70°C → shutoff)
 - Web dashboard for monitoring and control
 - Data logging to CSV
 - Dummy mode for hardware-free testing
+- **Actuator (PWM) graph and setpoint override in dummy dashboard**
 
 ## Folder Structure
 - `hardware/` — Schematics and setup photos
@@ -21,6 +22,9 @@ A modular, real-time temperature control system for ovens, featuring sensor feed
 ## Quick Start
 See [USER_MANUAL.md](USER_MANUAL.md) for detailed setup and usage instructions.
 
+- The dummy dashboard now allows setpoint override and shows a PWM duty cycle graph.
+- Fault detection logic is implemented: if the sensor reads NaN or temperature exceeds 70°C, the heater is shut off.
+
 ## Documentation
 - [User Manual](USER_MANUAL.md)
-- [Project Summary](USER_SUMMARY.md) # Smart_Oven_Subsystem
+- [Project Summary](USER_SUMMARY.md)

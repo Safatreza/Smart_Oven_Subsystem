@@ -37,6 +37,9 @@ pip3 install pandas flask streamlit w1thermsensor RPi.GPIO
 4. **Open your browser and go to:**
    [http://localhost:8501](http://localhost:8501)
 
+   - The dummy dashboard allows you to override the setpoint and view a real-time graph of actuator (PWM) output.
+   - **Fault detection logic:** If the sensor reads NaN or temperature exceeds 70°C, the heater is shut off for safety.
+
 ---
 
 ## 🔥 Running the Full System (With Hardware)
@@ -70,4 +73,5 @@ pip3 install pandas flask streamlit w1thermsensor RPi.GPIO
 - Ensure all dependencies are installed and hardware is connected correctly.
 - For sensor errors, check wiring and 1-Wire configuration on the Pi.
 - For permission errors, try running with `sudo`.
+- The dummy dashboard now supports setpoint override and actuator graph. Fault detection logic is enforced for safety.
 - For more details, see the [README](README.md) and [USER_SUMMARY](USER_SUMMARY.md). 
