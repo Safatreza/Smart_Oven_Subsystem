@@ -1,0 +1,8 @@
+pandas
+streamlit
+flask
+w1thermsensor
+RPi.GPIO
+pigpio  # Alternative for PWM (optional)
+# For dummy/demo mode (no hardware):
+# (no extra requirements) 

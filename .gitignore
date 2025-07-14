@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.venv
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and data
+*.log
+*.csv
+*.bak
+*.tmp
+
+# Streamlit
+.streamlit/
+
+# Simulink/Matlab
+*.slx
+*.mdl
+*.mat
+
+# VSCode
+.vscode/
+
+# Hardware design
+*.fbrd
+*.fsch
+
+# Ignore data and logs
+/data/
+smart-oven-subsystem-demo/dummy_data.csv 
